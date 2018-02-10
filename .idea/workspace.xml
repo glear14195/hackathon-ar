@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="78ac834a-48e7-44d5-8e53-565428a4edd7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/appStuff/urls.py" afterPath="$PROJECT_DIR$/appStuff/urls.py" />
-      <change beforePath="$PROJECT_DIR$/hackathon/settings.py" afterPath="$PROJECT_DIR$/hackathon/settings.py" />
-      <change beforePath="$PROJECT_DIR$/runtime.txt" afterPath="$PROJECT_DIR$/runtime.txt" />
-    </list>
+    <list default="true" id="78ac834a-48e7-44d5-8e53-565428a4edd7" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
