@@ -6,11 +6,17 @@ import logging
 import requests
 from django.utils import timezone
 from rest_framework import status
+
+from django.http import HttpResponse
+from django.views.generic import View, TemplateView
+from appStuff.models import AppUser
+
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import View
 from appStuff.models import AppUser, UserAdvertisementViewed
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
+
 logger = logging.getLogger(__name__)
 
 
@@ -69,6 +75,7 @@ class UserAuthView(View):
 
 
 class UserAdView(View):
+
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
         return super(UserAdView, self).dispatch(request, *args, **kwargs)
@@ -89,3 +96,9 @@ class UserAdView(View):
             return HttpResponse('Missing fb_id', status.HTTP_400_BAD_REQUEST)
 
 
+class AdvertisementAnalyticsView(TemplateView):
+
+    template_name = "analytics.html"
+
+    def get_context_data(self, **kwargs):
+        return {}
