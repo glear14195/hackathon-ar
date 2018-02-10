@@ -84,10 +84,10 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'hackathon',  # migrated to 1.8
-        'USER': 'hack_user',
-        'PASSWORD': 'hack_pass',
-        'HOST': '127.0.0.1',
+        'NAME': 'd8jdf4ikbf0o85',  # migrated to 1.8
+        'USER': 'iydeutmoyayrpu',
+        'PASSWORD': 'd7a012593f149c2776f20a04a097cf5c098fddbd87e49e3bb978b0de981202a',
+        'HOST': 'ec2-23-21-229-48.compute-1.amazonaws.com',
         'PORT': '5432',
     },
 }
