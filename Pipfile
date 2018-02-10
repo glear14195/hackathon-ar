@@ -16,6 +16,7 @@ gunicorn = "*"
 djangorestframework = "*"
 django = "*"
 "psycopg2" = "*"
+dj-static = "*"
 
 
 [requires]
