@@ -6,7 +6,7 @@ import logging
 from django.utils import timezone
 from rest_framework import status
 from django.http import HttpResponse
-from django.views.generic import View
+from django.views.generic import View, TemplateView
 from appStuff.models import AppUser
 
 logger = logging.getLogger(__name__)
@@ -26,9 +26,18 @@ class UserAuthView(View):
                                                     'last_logged_in_at': timezone.now()
                                                 })
             if created:
-
+                pass
             return HttpResponse(status=status.HTTP_200_OK)
         else:
             return HttpResponse('No email present in request', status=status.HTTP_400_BAD_REQUEST)
 
 class UserAdView(View):
+    pass
+
+
+class AdvertisementAnalyticsView(TemplateView):
+
+    template_name = "analytics.html"
+
+    def get_context_data(self, **kwargs):
+        return {}
