@@ -14,7 +14,8 @@ name = "pypi"
 django-admin = "==1.1.1"
 gunicorn = "*"
 djangorestframework = "*"
-
+psycopg2 = "*"
+django = "*"
 
 [requires]
 

@@ -105,8 +105,8 @@ demo = {
         Chartist.Pie('#chartPreferences', dataPreferences, optionsPreferences);
         
         Chartist.Pie('#chartPreferences', {
-          labels: ['62%','32%','6%'],
-          series: [62, 32, 6]
+          labels: ['Noida','Gudgaon','Delhi', 'Faridabad'],
+          series: [52, 32, 6, 10]
         });   
     },
     
