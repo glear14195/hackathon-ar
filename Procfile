@@ -1,2 +1,2 @@
-web: mkdir static;python manage.py collectstatic --noinput; gunicorn hackathon.wsgi:application
+web: mkdir static;python manage.py collectstatic --noinput; python manage.py runserver
 
