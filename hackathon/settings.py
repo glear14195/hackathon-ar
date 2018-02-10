@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -71,7 +72,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'hackathon.wsgi.application'
-GOOGLE_API = ""
+GOOGLE_API = 'https://maps.googleapis.com/maps/api/geocode/json'
+API_KEY = 'AIzaSyBj-Jzn9W3ixg7aFFqW_OrV6HQ2WfkqwPY'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
