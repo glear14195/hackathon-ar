@@ -131,3 +131,14 @@ STATIC_ROOT = normpath(join(BASE_DIR, 'static-tmp'))
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+LOGGING = {
+    'version': 1,
+    'loggers': {
+     '': {
+            'handlers': [],
+            'level': 'INFO',
+            'propagate': True,
+        }
+    },
+}

