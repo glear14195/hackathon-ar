@@ -19,5 +19,5 @@ from appStuff import urls as app_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^app/', include(app_urls)),
+    url(r'^', include(app_urls)),
 ]

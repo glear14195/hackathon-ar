@@ -50,7 +50,20 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            demo.initChartist();
+            document.getElementById('{{ id }}').className = "active";
+
+            var gender_data= {{ gender_data|safe }};
+            var gender_labels = gender_data["labels"];
+            var gender_values = gender_data["values"];
+
+            var location_data= {{ location_data|safe }};
+            var location_labels = location_data["labels"];
+            var location_values = location_data["values"];
+
+            var date_data= {{ date_data|safe }};
+            var date_labels = date_data["labels"];
+            var date_values = date_data["values"];
+
             var optionsSales = {
                 lineSmooth: false,
                 low: 0,
@@ -90,18 +103,18 @@
 
 
             var locationDistributionData = {
-                labels: ["Noida", "Gudgaon", "Delhi", "Faridabad"],
-                series: [52, 32, 6, 10]
+                labels: location_labels,
+                series: location_values
             };
 
             var genderDistributionData = {
-                labels: ["Male", "Female"],
-                series: [60, 40]
+                labels: gender_labels,
+                series: gender_values
             };
 
             var dayWiseViewsData = {
-                labels: ["1 Feb", "2 Feb", "3 Feb", "4 Feb", "5 Feb", "6 Feb", "7 Feb"],
-                series: [[50, 40, 30, 50, 40, 30, 20],]
+                labels: date_labels,
+                series: [date_values, ]
             };
 
             var options = {
@@ -140,13 +153,42 @@
                 </div>
 
                 <ul class="nav">
-                    <li class="active">
-                        <a href="dashboard.html">
+                    <li id="1">
+                        <a href="/analytics/1">
                             <i class="pe-7s-graph"></i>
-                            <p>Analytics</p>
+                            <p>Car Ad</p>
                         </a>
                     </li>
                 </ul>
+
+                <ul class="nav">
+                    <li id="2">
+                        <a href="/analytics/2">
+                            <i class="pe-7s-graph"></i>
+                            <p>Laptop Ad</p>
+                        </a>
+                    </li>
+                </ul>
+
+
+                <ul class="nav">
+                    <li id="3">
+                        <a href="/analytics/3">
+                            <i class="pe-7s-graph"></i>
+                            <p>Rolex Ad</p>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="nav">
+                    <li id="4">
+                        <a href="/analytics/4">
+                            <i class="pe-7s-graph"></i>
+                            <p>Furniture Ad</p>
+                        </a>
+                    </li>
+                </ul>
+
             </div>
         </div>
 
@@ -212,7 +254,7 @@
                             <h4 class="title" style="color: #9865DA">Total Views</h4>
                         </div>
                         <div class="content">
-                            <h3>{{ total_view }}</h3>
+                            <h3>{{ total_views }}</h3>
                         </div>
                     </div>
                     </div>
@@ -220,10 +262,10 @@
                     <div class="col-md-4">
                         <div class="card">
                         <div class="header">
-                            <h4 class="title" style="color: #9865DA">Time Spent Per View</h4>
+                            <h4 class="title" style="color: #9865DA">Time Spent Per View (secs)</h4>
                         </div>
                         <div class="content">
-                            <h3>{{ time_per_view }}</h3>
+                            <h3>{{ avg_time_spent }}</h3>
                         </div>
                     </div>
                     </div>
