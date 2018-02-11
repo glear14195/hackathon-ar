@@ -98,20 +98,17 @@ class UserAdView(View):
 
     def post(self, request, *args, **kwargs):
         mode = request.POST.get('mode')
-        fb_id = request.POST.get('user_id')
+        fb_id = request.POST.get('user_id') or '1664199046979682'
         adv_id = request.POST.get('adv_id')
         requests.post('https://webhook.site/f3666a77-c65a-43b5-bd3b-84615ff83a85', json=json.dumps(request.POST))
-        logger.error("THIS -> {}".format(json.dumps(request.POST)))
         if mode and fb_id and adv_id:
-            logger.error("BOOM ->{},{},{}".format(mode, fb_id, adv_id))
-
             if mode == 'Close':
                 UserAdvertisementViewed.objects.filter(app_user__fb_id=fb_id,
                                                        advertisement__key=adv_id,
                                                        is_closed=False).update(
                     view_end_at=timezone.now(), is_closed=True
                 )
-                return HttpResponse('Done!', status.HTTP_200_OK)
+                return HttpResponse('Done!', status=status.HTTP_200_OK)
             elif mode == 'Open':
                 try:
                     user = AppUser.objects.get(fb_id=fb_id)
@@ -122,9 +119,11 @@ class UserAdView(View):
                 except Advertisement.DoesNotExist:
                     return HttpResponse('Invalid advertisement', status=status.HTTP_400_BAD_REQUEST)
                 UserAdvertisementViewed.objects.create(app_user=user, advertisement=advertisement)
-                return HttpResponse('Done!', status.HTTP_200_OK)
+                return HttpResponse('Done!', status=status.HTTP_200_OK)
+            else:
+                return HttpResponse('Invalid mode', status=status.HTTP_400_BAD_REQUEST)
         else:
-            return HttpResponse('Invalid parameters', status.HTTP_400_BAD_REQUEST)
+            return HttpResponse('Invalid parameters', status=status.HTTP_400_BAD_REQUEST)
 
 
 class AdvertisementAnalyticsView(TemplateView):
