@@ -43,9 +43,11 @@ class Advertisement(models.Model):
 
         view_data = UserAdvertisementViewed.objects.filter(advertisement_id=self.id, is_closed=True).annotate(
             time_spent=F("view_end_at")-F("view_start_at"),
-        ).aggregate(time_spent_sum=Sum("time_spent"), total_views=Count("id"))
+        ).aggregate(time_spent_sum=Sum("time_spent"), total_views=Count("id"), total_distinct=Count(
+            "app_user", distinct=True))
         if view_data:
             total_views = view_data["total_views"]
+            total_distinct = view_data["total_distinct"]
             if view_data["time_spent_sum"]:
                 time_spent_per_view_seconds = view_data["time_spent_sum"].total_seconds()/total_views
             else:
@@ -91,6 +93,7 @@ class Advertisement(models.Model):
         time_labels, time_values = self.transform_data_for_charts(geo_wise_time)
         context = {
             "total_views": total_views,
+            "total_distinct": total_distinct,
             "avg_time_spent": time_spent_per_view_seconds,
             "returning_users": returning_users_count,
             "location_data": json.dumps(
