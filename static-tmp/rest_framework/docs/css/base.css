@@ -64,10 +64,13 @@ pre.highlight code {
   display: none;
 }
 
+<<<<<<< HEAD
+=======
 .sidebar .menu-list {
   width: inherit;
 }
 
+>>>>>>> 86dfaa2a0161608f0993da5e2fec13af8b52db9c
 .sidebar .menu-list ul,
 .sidebar .menu-list li {
   background: #2e353d;
@@ -198,8 +201,12 @@ body {
 
 .sidebar .menu-list.menu-list-bottom {
     margin-bottom: 0;
+<<<<<<< HEAD
+    position: absolute;
+=======
     position: fixed;
     width: inherit;
+>>>>>>> 86dfaa2a0161608f0993da5e2fec13af8b52db9c
     bottom: 0;
     left: 0;
     right: 0;

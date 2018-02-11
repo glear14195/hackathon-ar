@@ -18,7 +18,6 @@ django = "*"
 "psycopg2" = "*"
 dj-static = "*"
 
-
 [requires]
 
 python_version = "2.7"

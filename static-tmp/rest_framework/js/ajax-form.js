@@ -37,6 +37,8 @@ function doAjaxSubmit(e) {
 
   if (contentType) {
     data = form.find('[data-override="content"]').val() || ''
+<<<<<<< HEAD
+=======
 
     if (contentType === 'multipart/form-data') {
       // We need to add a boundary parameter to the header
@@ -52,6 +54,7 @@ function doAjaxSubmit(e) {
       // Fix textarea.value EOL normalisation (multipart/form-data should use CR+NL, not NL)
       data = data.replace(/\n/g, '\r\n');
     }
+>>>>>>> 86dfaa2a0161608f0993da5e2fec13af8b52db9c
   } else {
     contentType = form.attr('enctype') || form.attr('encoding')
 

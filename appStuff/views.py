@@ -9,7 +9,7 @@ from rest_framework import status
 
 from django.http import HttpResponse
 from django.views.generic import View, TemplateView
-from appStuff.models import AppUser
+from appStuff.models import AppUser, Advertisement
 
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import View
@@ -128,4 +128,6 @@ class AdvertisementAnalyticsView(TemplateView):
     template_name = "analytics.html"
 
     def get_context_data(self, **kwargs):
-        return {}
+        advertisement_id = kwargs["ad_id"]
+        advertisement = Advertisement.objects.get(id=advertisement_id)
+        return advertisement.calculate_advertisement_analytics()
