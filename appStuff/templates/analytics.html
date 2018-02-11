@@ -121,6 +121,11 @@
                 series: [date_values, ]
             };
 
+            var geoWiseViewTimesData = {
+                labels: time_labels,
+                series: [time_values, ]
+            };
+
             var options = {
             seriesBarDistance: 10,
             axisX: {
@@ -135,7 +140,7 @@
 
             Chartist.Bar('#chartViewsPerDay', dayWiseViewsData, options, responsiveOptions);
 
-            # Chartist.Bar('#AvgTimesPerGeo',
+            Chartist.Bar('#AvgTimesPerGeo', geoWiseViewTimesData, options, responsiveOptions);
 
         });
     </script>
@@ -335,7 +340,7 @@
                             <div class="card ">
                                 <div class="header">
                                     <h4 class="title" style="color: #325db1">Average view times per demographic</h4>
-                                    <p class="category"></p>
+                                    <p class="category">Ad Views grouped by geolocation</p>
                                 </div>
                                 <div class="content">
                                     <div id="AvgTimesPerGeo" class="ct-chart"></div>

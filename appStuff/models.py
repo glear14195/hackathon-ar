@@ -7,7 +7,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-from django.db.models import F, Sum, Count
+from django.db.models import F, Sum, Count, Avg
 from django.db.models.functions import TruncDay
 
 
@@ -77,11 +77,18 @@ class Advertisement(models.Model):
             "c"
         )
 
+        geo_wise_time = UserAdvertisementViewed.objects.filter(
+            advertisement_id=self.id, is_closed=True
+        ).values('app_user__city').annotate(c=Avg(F('view_end_at')-F('view_start_at'))).order_by(
+            'app_user__city').values_list(
+            'app_user__city',
+            'c'
+        )
+
         location_labels, location_values = self.transform_data_for_charts(location_wise_data)
         gender_labels, gender_values = self.transform_data_for_charts(gender_wise_data)
         date_labels, date_values = self.transform_data_for_charts(date_wise_date)
-        time_labels, time_values = (1, 2)
-
+        time_labels, time_values = self.transform_data_for_charts(geo_wise_time)
         context = {
             "total_views": total_views,
             "avg_time_spent": time_spent_per_view_seconds,
@@ -126,7 +133,8 @@ class Advertisement(models.Model):
                 label = label.strftime("%d %b")
             if type(value) is datetime:
                 value = value.strftime("%d %b")
-
+            elif type(value) is timedelta:
+                value = value.total_seconds()
             labels.append(label)
             values.append(value)
 
