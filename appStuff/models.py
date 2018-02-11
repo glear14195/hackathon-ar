@@ -80,6 +80,7 @@ class Advertisement(models.Model):
         location_labels, location_values = self.transform_data_for_charts(location_wise_data)
         gender_labels, gender_values = self.transform_data_for_charts(gender_wise_data)
         date_labels, date_values = self.transform_data_for_charts(date_wise_date)
+        time_labels, time_values = (1, 2)
 
         context = {
             "total_views": total_views,
@@ -106,9 +107,9 @@ class Advertisement(models.Model):
             "time_data": json.dumps(
                 {
                     "labels": time_labels,
-                    "values": time_
+                    "values": time_values
                 }
-            )
+            ),
             "id": self.id
         }
 
