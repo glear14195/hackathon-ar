@@ -131,6 +131,8 @@
 
             Chartist.Bar('#chartViewsPerDay', dayWiseViewsData, options, responsiveOptions);
 
+            // Chartist.
+
         });
     </script>
 
@@ -144,7 +146,7 @@
 <div>
 
     <div class="wrapper">
-        <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-5.jpg">
+        <div class="sidebar" data-color="blue" data-image="/static/img/sidebar-4.jpg">
             <div class="sidebar-wrapper">
                 <div class="logo">
                     <a href="http://www.creative-tim.com" class="simple-text">
@@ -251,7 +253,7 @@
                     <div class="col-md-4">
                         <div class="card">
                         <div class="header">
-                            <h4 class="title" style="color: #9865DA">Total Views</h4>
+                            <h4 class="title" style="color: #325db1">Total Views</h4>
                         </div>
                         <div class="content">
                             <h3>{{ total_views }}</h3>
@@ -262,7 +264,7 @@
                     <div class="col-md-4">
                         <div class="card">
                         <div class="header">
-                            <h4 class="title" style="color: #9865DA">Time Spent Per View (secs)</h4>
+                            <h4 class="title" style="color: #325db1">Time Spent Per View (secs)</h4>
                         </div>
                         <div class="content">
                             <h3>{{ avg_time_spent }}</h3>
@@ -273,7 +275,7 @@
                     <div class="col-md-4">
                         <div class="card">
                         <div class="header">
-                            <h4 class="title" style="color: #9865DA">Returning Users</h4>
+                            <h4 class="title" style="color: #325db1">Returning Users</h4>
                         </div>
                         <div class="content">
                             <h3>{{ returning_users }}</h3>
@@ -288,7 +290,7 @@
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="header">
-                                    <h4 class="title">Gender Distribution</h4>
+                                    <h4 class="title" style="color: #325db1">Gender Distribution</h4>
                                     <p class="category">Ad views distribution based on gender</p>
                                 </div>
                                 <div class="content">
@@ -300,7 +302,7 @@
                         <div class="col-md-8">
                             <div class="card ">
                                 <div class="header">
-                                    <h4 class="title">Views Per Day</h4>
+                                    <h4 class="title" style="color: #325db1">Views Per Day</h4>
                                     <p class="category">Times as was views per day for the past 7 days</p>
                                 </div>
                                 <div class="content">
@@ -316,7 +318,7 @@
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="header">
-                                    <h4 class="title">Location Distribution</h4>
+                                    <h4 class="title" style="color: #325db1">Location Distribution</h4>
                                     <p class="category">Ad views grouped by location of the viewers.</p>
                                 </div>
                                 <div class="content">
@@ -324,6 +326,20 @@
                                 </div>
                             </div>
                         </div>
+
+                         <div class="col-md-8">
+                            <div class="card ">
+                                <div class="header">
+                                    <h4 class="title" style="color: #325db1">Average view times per demographic</h4>
+                                    <p class="category"></p>
+                                </div>
+                                <div class="content">
+                                    <div id="AvgTimesPerGeo" class="ct-chart"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
 
                     </div>
 
