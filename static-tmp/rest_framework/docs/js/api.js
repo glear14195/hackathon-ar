@@ -2,6 +2,17 @@ var responseDisplay = 'data'
 var coreapi = window.coreapi
 var schema = window.schema
 
+<<<<<<< HEAD
+=======
+function normalizeKeys (arr) {
+  var _normarr = [];
+  for (var i = 0; i < arr.length; i++) {
+    _normarr = _normarr.concat(arr[i].split(' > '));
+  }
+  return _normarr;
+}
+
+>>>>>>> 86dfaa2a0161608f0993da5e2fec13af8b52db9c
 function normalizeHTTPHeader (str) {
   // Capitalize HTTP headers for display.
   return (str.charAt(0).toUpperCase() + str.substring(1))
@@ -94,7 +105,11 @@ $(function () {
     var $requestAwaiting = $form.find('.request-awaiting')
     var $responseRaw = $form.find('.response-raw')
     var $responseData = $form.find('.response-data')
+<<<<<<< HEAD
     var key = $form.data('key')
+=======
+    var key = normalizeKeys($form.data('key'))
+>>>>>>> 86dfaa2a0161608f0993da5e2fec13af8b52db9c
     var params = {}
     var entries = formEntries($form.get()[0])
 
@@ -102,7 +117,11 @@ $(function () {
       var entry = entries[i]
       var paramKey = entry[0]
       var paramValue = entry[1]
+<<<<<<< HEAD
       var $elem = $form.find('[name=' + paramKey + ']')
+=======
+      var $elem = $form.find('[name="' + paramKey + '"]')
+>>>>>>> 86dfaa2a0161608f0993da5e2fec13af8b52db9c
       var dataType = $elem.data('type') || 'string'
 
       if (dataType === 'integer' && paramValue) {
@@ -121,7 +140,11 @@ $(function () {
           'false': false
         }[paramValue.toLowerCase()]
         if (value !== undefined) {
+<<<<<<< HEAD
           params[paramKey]
+=======
+          params[paramKey] = value
+>>>>>>> 86dfaa2a0161608f0993da5e2fec13af8b52db9c
         }
       } else if (dataType === 'array' && paramValue) {
         try {
@@ -212,7 +235,10 @@ $(function () {
     }
 
     var client = new coreapi.Client(options)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 86dfaa2a0161608f0993da5e2fec13af8b52db9c
     client.action(schema, key, params).then(function (data) {
       var response = JSON.stringify(data, null, 2)
       $requestAwaiting.addClass('hide')

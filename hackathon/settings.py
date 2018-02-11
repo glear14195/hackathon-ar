@@ -27,7 +27,7 @@ SECRET_KEY = '%-dz#ohg_(9auy7wlt#si=d*sx%4)jfnc^kf)wuv7&1zb0v(fu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['shielded-springs-20165.herokuapp.com']
+ALLOWED_HOSTS = ['shielded-springs-20165.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -77,13 +77,12 @@ API_KEY = 'AIzaSyBj-Jzn9W3ixg7aFFqW_OrV6HQ2WfkqwPY'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'd8jdf4ikbf0o85',  # migrated to 1.8
         'USER': 'iydeutmoyayrpu',
-        'PASSWORD': 'd7a012593f149c2776f20a04a097cf5c098fddbd87e49e3bb978b0de981202a',
+        'PASSWORD': '0d7a012593f149c2776f20a04a097cf5c098fddbd87e49e3bb978b0de981202a',
         'HOST': 'ec2-23-21-229-48.compute-1.amazonaws.com',
         'PORT': '5432',
     },
