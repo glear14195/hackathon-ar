@@ -34,4 +34,5 @@ class UserAdvertisementViewed(models.Model):
     advertisement = models.ForeignKey(Advertisement)
     view_start_at = models.DateTimeField(auto_now_add=True)
     view_end_at = models.DateTimeField(null=True)
+    is_closed = models.BooleanField(default=False)
 

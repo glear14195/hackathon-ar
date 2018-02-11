@@ -13,9 +13,10 @@ from appStuff.models import AppUser
 
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import View
-from appStuff.models import AppUser, UserAdvertisementViewed
+from appStuff.models import AppUser, UserAdvertisementViewed, Advertisement
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import F
 
 logger = logging.getLogger(__name__)
 
@@ -94,6 +95,32 @@ class UserAdView(View):
             return JsonResponse(response)
         else:
             return HttpResponse('Missing fb_id', status.HTTP_400_BAD_REQUEST)
+
+    def post(self, request, *args, **kwargs):
+        mode = request.POST.get('mode')
+        fb_id = request.POST.get('user_id')
+        adv_id = request.POST.get('adv_id')
+
+        if mode and fb_id and adv_id:
+            if mode == 'Close':
+                UserAdvertisementViewed.objects.filter(app_user__fb_id=fb_id,
+                                                       advertisement__key=adv_id,
+                                                       is_closed=False).update(
+                    view_end_at=timezone.now(), is_closed=True
+                )
+            elif mode == 'Open':
+                try:
+                    user = AppUser.objects.get(fb_id=fb_id)
+                except AppUser.DoesNotExist:
+                    return HttpResponse('No such user', status=status.HTTP_400_BAD_REQUEST)
+                try:
+                    advertisement = Advertisement.objects.get(key=adv_id)
+                except Advertisement.DoesNotExist:
+                    return HttpResponse('Invalid advertisement', status=status.HTTP_400_BAD_REQUEST)
+                UserAdvertisementViewed.objects.create(app_user=user, advertisement=advertisement)
+                return HttpResponse('Done!', status.HTTP_200_OK)
+        else:
+            return HttpResponse('Invalid parameters', status.HTTP_400_BAD_REQUEST)
 
 
 class AdvertisementAnalyticsView(TemplateView):
