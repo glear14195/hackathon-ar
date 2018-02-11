@@ -88,8 +88,8 @@ class UserAdView(View):
                                     UserAdvertisementViewed.objects.filter(
                                        app_user__fb_id=fb_id).values(
                                        'advertisement__key').distinct(
-                                       'advertisement').order_by(
-                                       '-view_start_at')
+                                       'advertisement').order_by('advertisement',
+                                                                 '-view_start_at')
                                     ]
                         }
             return JsonResponse(response)
@@ -108,6 +108,7 @@ class UserAdView(View):
                                                        is_closed=False).update(
                     view_end_at=timezone.now(), is_closed=True
                 )
+                return HttpResponse('Done!', status.HTTP_200_OK)
             elif mode == 'Open':
                 try:
                     user = AppUser.objects.get(fb_id=fb_id)

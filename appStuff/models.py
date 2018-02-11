@@ -26,22 +26,30 @@ class AppUser(models.Model):
 class Advertiser(models.Model):
     user = models.ForeignKey(User)
 
+    def __unicode__(self):
+        return self.user.username
+
 
 class Advertisement(models.Model):
     advertiser = models.ForeignKey(Advertiser)
     title = models.CharField(max_length=120)
-    key = models.CharField(max_length=100)
+    key = models.CharField(unique=True, max_length=100)
     ad_site = models.URLField(null=False)
+
+    def __unicode__(self):
+        return self.title
 
     def calculate_advertisement_analytics(self):
 
-        view_data = UserAdvertisementViewed.objects.filter(advertisement_id=1).annotate(
+        view_data = UserAdvertisementViewed.objects.filter(advertisement_id=self.id, is_closed=True).annotate(
             time_spent=F("view_end_at")-F("view_start_at"),
         ).aggregate(time_spent_sum=Sum("time_spent"), total_views=Count("id"))
-
-        total_views = view_data["total_views"]
-        time_spent_per_view_seconds = view_data["time_spent_sum"].total_seconds()/total_views
-
+        if view_data:
+            total_views = view_data["total_views"]
+            if view_data["time_spent_sum"]:
+                time_spent_per_view_seconds = view_data["time_spent_sum"].total_seconds()/total_views
+            else:
+                time_spent_per_view_seconds = 0
         returning_users_count = UserAdvertisementViewed.objects.filter(advertisement_id=self.id).values(
             "app_user"
         ).annotate(c=Count("id")).filter(c__gte=2).count()
@@ -97,8 +105,6 @@ class Advertisement(models.Model):
             ),
             "id": self.id
         }
-
-        print(context)
 
         return context
 
