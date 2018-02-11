@@ -100,8 +100,10 @@ class UserAdView(View):
         mode = request.POST.get('mode')
         fb_id = request.POST.get('user_id')
         adv_id = request.POST.get('adv_id')
-
+        logger.error("THIS -> {}".format(json.dumps(request.POST)))
         if mode and fb_id and adv_id:
+            logger.error("BOOM ->{},{},{}".format(mode, fb_id, adv_id))
+
             if mode == 'Close':
                 UserAdvertisementViewed.objects.filter(app_user__fb_id=fb_id,
                                                        advertisement__key=adv_id,

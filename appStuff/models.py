@@ -103,6 +103,12 @@ class Advertisement(models.Model):
                     "values": date_values
                 }
             ),
+            "time_data": json.dumps(
+                {
+                    "labels": time_labels,
+                    "values": time_
+                }
+            )
             "id": self.id
         }
 

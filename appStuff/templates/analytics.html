@@ -64,6 +64,10 @@
             var date_labels = date_data["labels"];
             var date_values = date_data["values"];
 
+            var time_data= {{ time_data|safe }};
+            var time_labels = time_data["labels"];
+            var time_values = time_data["values"];
+
             var optionsSales = {
                 lineSmooth: false,
                 low: 0,
@@ -131,7 +135,7 @@
 
             Chartist.Bar('#chartViewsPerDay', dayWiseViewsData, options, responsiveOptions);
 
-            // Chartist.
+            # Chartist.Bar('#AvgTimesPerGeo',
 
         });
     </script>
